@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Expense, Category } from '../models/expense.model';
 
@@ -23,8 +24,10 @@ export class ExpenseService {
     { name: 'Other', emoji: '📦', color: '#D3D3D3' }
   ];
 
-  constructor() {
-    this.loadExpensesFromStorage();
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadExpensesFromStorage();
+    }
   }
 
   getExpenses(): Observable<Expense[]> {
@@ -102,6 +105,8 @@ export class ExpenseService {
   }
 
   private loadExpensesFromStorage(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (stored) {
@@ -114,6 +119,8 @@ export class ExpenseService {
   }
 
   private saveExpensesToStorage(expenses: Expense[]): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(expenses));
     } catch (error) {

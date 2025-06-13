@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
 import { Expense } from '../models/expense.model';
 import { Subscription } from 'rxjs';
+import { ExportService } from '../services/export.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-history',
@@ -26,7 +28,11 @@ export class HistoryComponent implements OnInit, OnDestroy {
   
   private subscription: Subscription = new Subscription();
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(
+    private expenseService: ExpenseService,
+    private exportService: ExportService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.subscription.add(
@@ -136,14 +142,45 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.applyFilters();
   }
 
-  // Delete expense with confirmation
+  exportToCSV(): void {
+    if (this.filteredExpenses.length === 0) {
+      this.toastService.showError('No expenses to export');
+      return;
+    }
+    
+    this.exportService.exportToCSV(this.filteredExpenses);
+    this.toastService.showSuccess(`Exported ${this.filteredExpenses.length} expenses to CSV`);
+  }
+  
+  exportToJSON(): void {
+    if (this.filteredExpenses.length === 0) {
+      this.toastService.showError('No expenses to export');
+      return;
+    }
+    
+    this.exportService.exportToJSON(this.filteredExpenses);
+    this.toastService.showSuccess(`Exported ${this.filteredExpenses.length} expenses to JSON`);
+  }
+  
+  exportReport(): void {
+    if (this.filteredExpenses.length === 0) {
+      this.toastService.showError('No expenses to export');
+      return;
+    }
+    
+    this.exportService.exportReport(this.filteredExpenses);
+    this.toastService.showSuccess('Expense report generated successfully');
+  }
+  
   deleteExpense(expense: Expense): void {
     const confirmMessage = `Are you sure you want to delete this expense?\n\n${expense.description} - ${this.formatCurrency(expense.amount)}`;
     
     if (confirm(confirmMessage)) {
       this.expenseService.deleteExpense(expense.id);
+      this.toastService.showSuccess('Expense deleted successfully');
     }
   }
+  
 
   // Format currency
   formatCurrency(amount: number): string {

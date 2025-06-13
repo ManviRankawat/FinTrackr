@@ -1,4 +1,95 @@
-.history-container {
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .export-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .btn-export {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-export:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+  }
+  
+  .export-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    min-width: 200px;
+  }
+  
+  .export-dropdown:hover .export-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .export-option {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+  }
+  
+  .export-option:hover {
+    background: #f8f9fa;
+  }
+  
+  .export-option:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .export-option:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .header-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .export-dropdown {
+      width: 100%;
+    }
+    
+    .btn-export,
+    .btn-add {
+      width: 100%;
+    }
+  }
+  
+  .history-container {
     max-width: 1200px;
     margin: 0 auto;
   }

@@ -77,10 +77,20 @@
     <div class="expenses-section">
       <div class="expenses-header">
         <h2>Expenses</h2>
+        <div class="header-actions">
+            <div class="export-dropdown">
+            <button class="btn-export">📤 Export</button>
+            <div class="export-menu">
+                <button (click)="exportToCSV()" class="export-option">📊 Export CSV</button>
+                <button (click)="exportToJSON()" class="export-option">📄 Export JSON</button>
+                <button (click)="exportReport()" class="export-option">📋 Generate Report</button>
+            </div>
+        </div>
         <button routerLink="/add-expense" class="btn-add">
-          ➕ Add New Expense
+            ➕ Add New Expense
         </button>
       </div>
+    </div>
   
       <!-- Desktop Table View -->
       <div class="table-container desktop-view">

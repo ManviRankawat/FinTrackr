@@ -32,8 +32,8 @@
           [class.error]="hasError('category')"
         >
           <option value="">Select a category</option>
-          <option *ngFor="let category of categories" [value]="category">
-            {{ category }}
+          <option *ngFor="let category of categories" [value]="category.name">
+            {{ category.emoji }} {{ category.name }}
           </option>
         </select>
         <div class="error-message" *ngIf="hasError('category')">

@@ -1,1 +1,62 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <h1>Welcome to Your Finance Dashboard! 📊</h1>
+    
+    <div class="dashboard-grid">
+      <div class="card">
+        <h3>💳 Total Expenses</h3>
+        <p class="amount">{{ formatCurrency(totalExpenses) }}</p>
+        <small>This month</small>
+      </div>
+      
+      <div class="card">
+        <h3>📈 Most Spent Category</h3>
+        <p class="category">
+          {{ getCategoryEmoji(mostSpentCategory) }} {{ mostSpentCategory }}
+        </p>
+        <small>Top spending category</small>
+      </div>
+      
+      <div class="card">
+        <h3>🎯 Total Transactions</h3>
+        <p class="status">{{ expenses.length }}</p>
+        <small>All time</small>
+      </div>
+    </div>
+  
+    <!-- Recent Expenses Section -->
+    <div class="recent-expenses" *ngIf="recentExpenses.length > 0">
+      <h2>📋 Recent Expenses</h2>
+      <div class="expense-list">
+        <div class="expense-item" *ngFor="let expense of recentExpenses">
+          <div class="expense-icon">
+            {{ getCategoryEmoji(expense.category) }}
+          </div>
+          <div class="expense-details">
+            <h4>{{ expense.description }}</h4>
+            <p class="expense-category">{{ expense.category }}</p>
+            <p class="expense-date">{{ expense.date }}</p>
+          </div>
+          <div class="expense-amount">
+            {{ formatCurrency(expense.amount) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2>Quick Actions</h2>
+      <button class="btn-primary" routerLink="/add-expense">➕ Add New Expense</button>
+      <button class="btn-secondary" routerLink="/history">📋 View History</button>
+    </div>
+  
+    <!-- Empty State for New Users -->
+    <div class="empty-state" *ngIf="expenses.length === 0">
+      <div class="empty-icon">💰</div>
+      <h2>Start Your Financial Journey!</h2>
+      <p>You haven't added any expenses yet. Add your first expense to see your dashboard come to life!</p>
+      <button class="btn-primary" routerLink="/add-expense">
+        ➕ Add Your First Expense
+      </button>
+    </div>
+  </div>

@@ -1,0 +1,201 @@
+.dashboard h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .card h3 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1.1rem;
+  }
+  
+  .amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    margin: 0.5rem 0;
+  }
+  
+  .category, .status {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  .recent-expenses {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .recent-expenses h2 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .expense-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .expense-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+  }
+  
+  .expense-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+  
+  .expense-details {
+    flex: 1;
+  }
+  
+  .expense-details h4 {
+    margin: 0 0 0.25rem 0;
+    color: #333;
+    font-size: 1.1rem;
+  }
+  
+  .expense-category {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .expense-date {
+    margin: 0.25rem 0 0 0;
+    color: #999;
+    font-size: 0.8rem;
+  }
+  
+  .expense-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+  }
+  
+  .quick-actions {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .quick-actions h2 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s;
+    font-weight: 600;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  
+  .btn-secondary {
+    background: #f1f3f4;
+    color: #333;
+  }
+  
+  .btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 2rem 0;
+  }
+  
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  
+  .empty-state h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .expense-item {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .expense-icon {
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+      display: block;
+      margin: 0.5rem 0;
+      width: 100%;
+    }
+  }
