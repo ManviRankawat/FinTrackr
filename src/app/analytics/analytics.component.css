@@ -1,0 +1,333 @@
+.analytics-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .analytics-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .analytics-header h1 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+  }
+  
+  .analytics-header p {
+    color: #666;
+    font-size: 1.2rem;
+  }
+  
+  /* Metrics Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .metric-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+  
+  .metric-icon {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .metric-content h3 {
+    margin: 0 0 0.5rem 0;
+    color: #555;
+    font-size: 1.1rem;
+  }
+  
+  .metric-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  .metric-value.category-name {
+    font-size: 1.2rem;
+    color: #667eea;
+  }
+  
+  .metric-change {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .metric-change.positive {
+    color: #dc3545;
+  }
+  
+  .metric-change.negative {
+    color: #28a745;
+  }
+  
+  /* Charts Section */
+  .charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .chart-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  
+  .chart-card.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .chart-header {
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .chart-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.3rem;
+  }
+  
+  .chart-header p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .chart-container {
+    padding: 2rem;
+    height: 400px;
+    position: relative;
+  }
+  
+  /* Insights Section */
+  .insights-section {
+    margin-bottom: 3rem;
+  }
+  
+  .insights-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .insight-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 4px solid;
+    transition: transform 0.2s;
+  }
+  
+  .insight-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .insight-card.prediction {
+    border-left-color: #667eea;
+  }
+  
+  .insight-card.recommendation {
+    border-left-color: #28a745;
+  }
+  
+  .insight-card.savings {
+    border-left-color: #ffc107;
+  }
+  
+  .insight-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .insight-content h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .insight-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+    margin: 0.5rem 0 1rem 0;
+  }
+  
+  .insight-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+  
+  /* Tips Section */
+  .tips-section {
+    margin-bottom: 3rem;
+  }
+  
+  .tips-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .tip-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .tip-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .tip-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .tip-card h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+  }
+  
+  .tip-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+  
+  /* No Data State */
+  .no-data-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+  }
+  
+  .no-data-icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+  }
+  
+  .no-data-state h2 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .no-data-state p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .analytics-header h1 {
+      font-size: 2rem;
+    }
+    
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .charts-section {
+      grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+      height: 300px;
+      padding: 1rem;
+    }
+    
+    .insights-grid,
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .metric-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .metric-icon {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .analytics-container {
+      padding: 0 0.5rem;
+    }
+    
+    .metric-card,
+    .insight-card,
+    .tip-card {
+      padding: 1.5rem;
+    }
+    
+    .chart-header {
+      padding: 1rem;
+    }
+  }

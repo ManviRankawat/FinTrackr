@@ -1,0 +1,176 @@
+<div class="history-container">
+    <!-- Header -->
+    <div class="history-header">
+      <h1>📋 Expense History</h1>
+      <p>Manage and review all your expenses</p>
+    </div>
+  
+    <!-- Filters Section -->
+    <div class="filters-section">
+      <div class="filters-grid">
+        <!-- Search -->
+        <div class="filter-group">
+          <label>🔍 Search</label>
+          <input 
+            type="text" 
+            [(ngModel)]="searchTerm" 
+            (input)="applyFilters()"
+            placeholder="Search descriptions..."
+            class="filter-input"
+          >
+        </div>
+  
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <label>🏷️ Category</label>
+          <select 
+            [(ngModel)]="selectedCategory" 
+            (change)="applyFilters()"
+            class="filter-select"
+          >
+            <option value="">All Categories</option>
+            <option *ngFor="let category of categories" [value]="category.name">
+              {{ category.emoji }} {{ category.name }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- Month Filter -->
+        <div class="filter-group">
+          <label>📅 Month</label>
+          <select 
+            [(ngModel)]="selectedMonth" 
+            (change)="applyFilters()"
+            class="filter-select"
+          >
+            <option value="">All Months</option>
+            <option *ngFor="let month of availableMonths" [value]="month">
+              {{ month }}
+            </option>
+          </select>
+        </div>
+  
+        <!-- Clear Filters -->
+        <div class="filter-group">
+          <label>&nbsp;</label>
+          <button 
+            (click)="clearFilters()" 
+            class="btn-clear"
+            [disabled]="!searchTerm && !selectedCategory && !selectedMonth"
+          >
+            🗑️ Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Summary -->
+    <div class="summary-section" *ngIf="filteredExpenses.length > 0">
+      <div class="summary-card">
+        <h3>📊 Summary</h3>
+        <p><strong>Total Expenses:</strong> {{ filteredExpenses.length }}</p>
+        <p><strong>Total Amount:</strong> {{ formatCurrency(filteredTotal) }}</p>
+      </div>
+    </div>
+  
+    <!-- Expenses Table -->
+    <div class="expenses-section">
+      <div class="expenses-header">
+        <h2>Expenses</h2>
+        <button routerLink="/add-expense" class="btn-add">
+          ➕ Add New Expense
+        </button>
+      </div>
+  
+      <!-- Desktop Table View -->
+      <div class="table-container desktop-view">
+        <table class="expenses-table">
+          <thead>
+            <tr>
+              <th (click)="onSortChange('date')" class="sortable">
+                📅 Date
+                <span class="sort-indicator" *ngIf="sortBy === 'date'">
+                  {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                </span>
+              </th>
+              <th (click)="onSortChange('category')" class="sortable">
+                🏷️ Category
+                <span class="sort-indicator" *ngIf="sortBy === 'category'">
+                  {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                </span>
+              </th>
+              <th (click)="onSortChange('description')" class="sortable">
+                📝 Description
+                <span class="sort-indicator" *ngIf="sortBy === 'description'">
+                  {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                </span>
+              </th>
+              <th (click)="onSortChange('amount')" class="sortable">
+                💰 Amount
+                <span class="sort-indicator" *ngIf="sortBy === 'amount'">
+                  {{ sortDirection === 'asc' ? '↑' : '↓' }}
+                </span>
+              </th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let expense of filteredExpenses" class="expense-row">
+              <td class="date-cell">{{ formatDate(expense.date) }}</td>
+              <td class="category-cell">
+                <span class="category-badge" [style.background-color]="getCategoryInfo(expense.category).color">
+                  {{ getCategoryInfo(expense.category).emoji }} {{ expense.category }}
+                </span>
+              </td>
+              <td class="description-cell">{{ expense.description }}</td>
+              <td class="amount-cell">{{ formatCurrency(expense.amount) }}</td>
+              <td class="actions-cell">
+                <button 
+                  (click)="deleteExpense(expense)" 
+                  class="btn-delete"
+                  title="Delete expense"
+                >
+                  🗑️
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Mobile Card View -->
+      <div class="mobile-view">
+        <div class="expense-card" *ngFor="let expense of filteredExpenses">
+          <div class="expense-card-header">
+            <span class="category-badge" [style.background-color]="getCategoryInfo(expense.category).color">
+              {{ getCategoryInfo(expense.category).emoji }} {{ expense.category }}
+            </span>
+            <span class="expense-amount">{{ formatCurrency(expense.amount) }}</span>
+          </div>
+          <div class="expense-card-body">
+            <h4>{{ expense.description }}</h4>
+            <p class="expense-date">{{ formatDate(expense.date) }}</p>
+          </div>
+          <div class="expense-card-actions">
+            <button 
+              (click)="deleteExpense(expense)" 
+              class="btn-delete"
+            >
+              🗑️ Delete
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="filteredExpenses.length === 0">
+        <div class="empty-icon">📭</div>
+        <h3>No expenses found</h3>
+        <p *ngIf="expenses.length === 0">You haven't added any expenses yet.</p>
+        <p *ngIf="expenses.length > 0">Try adjusting your filters or search terms.</p>
+        <button routerLink="/add-expense" class="btn-primary">
+          ➕ Add Your First Expense
+        </button>
+      </div>
+    </div>
+  </div>

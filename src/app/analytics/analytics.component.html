@@ -1,0 +1,170 @@
+<div class="analytics-container">
+    <!-- Header -->
+    <div class="analytics-header">
+      <h1>📊 Analytics & Insights</h1>
+      <p>Understand your spending patterns and get AI-powered recommendations</p>
+    </div>
+  
+    <!-- Main Content -->
+    <div *ngIf="hasData; else noDataTemplate">
+      
+      <!-- Key Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon">💰</div>
+          <div class="metric-content">
+            <h3>Total Expenses</h3>
+            <p class="metric-value">{{ formatCurrency(totalExpenses) }}</p>
+            <small>All time</small>
+          </div>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-icon">📅</div>
+          <div class="metric-content">
+            <h3>This Month</h3>
+            <p class="metric-value">{{ formatCurrency(currentMonthTotal) }}</p>
+            <small class="metric-change" [class.positive]="monthlyGrowth > 0" [class.negative]="monthlyGrowth < 0">
+              {{ formatPercentage(monthlyGrowth) }} vs last month
+            </small>
+          </div>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-icon">📊</div>
+          <div class="metric-content">
+            <h3>Daily Average</h3>
+            <p class="metric-value">{{ formatCurrency(averageDaily) }}</p>
+            <small>Current month</small>
+          </div>
+        </div>
+  
+        <div class="metric-card">
+          <div class="metric-icon">🏆</div>
+          <div class="metric-content">
+            <h3>Top Category</h3>
+            <p class="metric-value category-name">{{ topCategory }}</p>
+            <small>Highest spending</small>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Charts Section -->
+      <div class="charts-section">
+        
+        <!-- Category Breakdown -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>🏷️ Spending by Category</h3>
+            <p>See where your money goes</p>
+          </div>
+          <div class="chart-container">
+            <canvas #categoryChart></canvas>
+          </div>
+        </div>
+  
+        <!-- Monthly Comparison -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>📈 Monthly Expenses</h3>
+            <p>Track your spending over time</p>
+          </div>
+          <div class="chart-container">
+            <canvas #monthlyChart></canvas>
+          </div>
+        </div>
+  
+        <!-- Spending Trend -->
+        <div class="chart-card full-width">
+          <div class="chart-header">
+            <h3>📉 Spending Trend</h3>
+            <p>Weekly spending pattern analysis</p>
+          </div>
+          <div class="chart-container">
+            <canvas #trendChart></canvas>
+          </div>
+        </div>
+      </div>
+  
+      <!-- AI Insights -->
+      <div class="insights-section">
+        <h2>🤖 AI-Powered Insights</h2>
+        <div class="insights-grid">
+          
+          <div class="insight-card prediction">
+            <div class="insight-icon">🔮</div>
+            <div class="insight-content">
+              <h4>Next Month Prediction</h4>
+              <p class="insight-value">{{ formatCurrency(predictedNextMonth) }}</p>
+              <p class="insight-description">
+                Based on your spending trends, you're likely to spend this amount next month.
+              </p>
+            </div>
+          </div>
+  
+          <div class="insight-card recommendation">
+            <div class="insight-icon">💡</div>
+            <div class="insight-content">
+              <h4>Budget Recommendation</h4>
+              <p class="insight-value">{{ formatCurrency(budgetRecommendation) }}</p>
+              <p class="insight-description">
+                Set this as your monthly budget to maintain healthy spending habits.
+              </p>
+            </div>
+          </div>
+  
+          <div class="insight-card savings">
+            <div class="insight-icon">💎</div>
+            <div class="insight-content">
+              <h4>Savings Opportunity</h4>
+              <p class="insight-value">{{ formatCurrency(savingsOpportunity) }}</p>
+              <p class="insight-description">
+                You could save this much by optimizing your largest expense category.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tips Section -->
+      <div class="tips-section">
+        <h2>💡 Smart Spending Tips</h2>
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-icon">🎯</div>
+            <h4>Set Category Budgets</h4>
+            <p>Create specific budgets for each spending category to better control your expenses.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">📱</div>
+            <h4>Track Daily</h4>
+            <p>Make it a habit to log expenses daily for more accurate insights and better control.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">🔄</div>
+            <h4>Review Weekly</h4>
+            <p>Check your spending patterns weekly to catch any unusual expenses early.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">💰</div>
+            <h4>Automate Savings</h4>
+            <p>Set up automatic transfers to savings based on your spending patterns.</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- No Data Template -->
+    <ng-template #noDataTemplate>
+      <div class="no-data-state">
+        <div class="no-data-icon">📊</div>
+        <h2>No Data Available</h2>
+        <p>Start tracking your expenses to see beautiful analytics and insights!</p>
+        <button routerLink="/add-expense" class="btn-primary">
+          ➕ Add Your First Expense
+        </button>
+      </div>
+    </ng-template>
+  
+  </div>
