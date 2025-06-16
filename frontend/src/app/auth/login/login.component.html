@@ -1,0 +1,61 @@
+<div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>🔐 Welcome Back</h1>
+        <p>Sign in to your Finance Tracker account</p>
+      </div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">📧 Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter your email"
+            [class.error]="hasError('email')"
+            class="form-input"
+          >
+          <div class="error-message" *ngIf="hasError('email')">
+            {{ getErrorMessage('email') }}
+          </div>
+        </div>
+  
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">🔒 Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter your password"
+            [class.error]="hasError('password')"
+            class="form-input"
+          >
+          <div class="error-message" *ngIf="hasError('password')">
+            {{ getErrorMessage('password') }}
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="loginForm.invalid || isLoading"
+        >
+          <span *ngIf="!isLoading">🚀 Sign In</span>
+          <span *ngIf="isLoading">⏳ Signing In...</span>
+        </button>
+  
+        <!-- Register Link -->
+        <div class="auth-link">
+          <p>Don't have an account? 
+            <a routerLink="/register" class="link">Create one here</a>
+          </p>
+        </div>
+  
+      </form>
+    </div>
+  </div>
